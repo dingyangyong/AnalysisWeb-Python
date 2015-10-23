@@ -1,0 +1,102 @@
+{% if analysis_data.display == "1" %}
+    if(!$(this).attr('ignore')){
+                var href = $(this).attr('href')
+                console.write(href);
+                $(this).attr('href', 'javascript:void(0);')
+    <script>
+    (function($){
+{#        $(".typesel{{ analysis_data.id }}").each(function() {#}
+{#                if(href != undefined){#}
+                    $(this).click(function(){
+                        ajax_content_data(href, 'view{{ analysis_data.id }}');
+                        return false;
+                    });
+{#                }#}
+{#            }#}
+        });
+    </script>
+    })(jQuery);
+
+<div class="widget">
+    <div class="widget-header">
+        <div class="left">
+            <div class="logo" style="background-image: none;">
+                <i class="icon-signal" style="font-size:26px;width: 38px;height: 38px;line-height: 38px;margin-left:8px;"></i>
+            </div>
+            <div class="title">
+                {{ analysis_data.name }}
+                {% if analysis_data.role == 3 or analysis_data.analysis.role == 3 or analysis_data.analysis.group.role == 3 %}
+                    L3
+                {% endif %}
+                {% if analysis_data.role == 2 or analysis_data.analysis.role == 2 or analysis_data.analysis.group.role == 2 %}
+                    L2
+                {% endif %}
+            </div>
+        </div>
+        {% if analysis_data.types != '空' %}
+        <div id="type-selector" class="typesel{{ analysis_data.id }}">
+            <div></div>
+            <div></div>
+            {% for t in types %}
+                <div class="button{% if t == type %} active{% endif %}"><a href="{% url 'analysis_data_ajax' analysis_data.id %}?type={{ t|urlencode }}&d={{ d }}">{{ t }}</a></div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    <div class="widget-content">
+        <div id="data{{ analysis_data.id }}">
+            {{ data|safe }}
+        </div>
+    </div>
+</div>
+{% else %}
+
+<div class="widget">
+    <div class="widget-header">
+        <div class="left">
+            <div class="logo" style="background-image: none;">
+                <i class="icon-signal" style="font-size:26px;width: 38px;height: 38px;line-height: 38px;margin-left:8px;"></i>
+            </div>
+            <div class="title">
+                {{ analysis_data.name }}
+                {% if analysis_data.role == 3 or analysis_data.analysis.role == 3 or analysis_data.analysis.group.role == 3 %}
+                    **
+                {% endif %}
+                {% if analysis_data.role == 2 or analysis_data.analysis.role == 2 or analysis_data.analysis.group.role == 2 %}
+                    *
+                {% endif %}
+            </div>
+        </div>
+        {% if analysis_data.display == "0" %}
+        <div id="date-selector" class="datesel{{ analysis_data.id }}">
+            <div></div><div></div>
+            <div class="button{% if d == '1' %} active{% endif %}"><a href="{% url 'analysis_data_ajax' analysis_data.id %}?d=1&type={{ type|urlencode }}">今天</a></div>
+            <div class="button{% if d == '2' %} active{% endif %}"><a href="{% url 'analysis_data_ajax' analysis_data.id %}?d=2&type={{ type|urlencode }}">昨天</a></div>
+            <div class="button{% if not d %} active{% endif %}"><a href="{% url 'analysis_data_ajax' analysis_data.id %}?type={{ type|urlencode }}">最近7天</a></div>
+            <div class="button{% if d == '3' %} active{% endif %}"><a href="{% url 'analysis_data_ajax' analysis_data.id %}?d=3&type={{ type|urlencode }}">最近15天</a></div>
+            <div class="button{% if d == '4' %} active{% endif %}"><a href="{% url 'analysis_data_ajax' analysis_data.id %}?d=4&type={{ type|urlencode }}">最近30天</a></div>
+            <div class="button{% if d == '5' %} active{% endif %}"><a href="{% url 'analysis_data_ajax' analysis_data.id %}?d=5&type={{ type|urlencode }}">最近180天</a></div>
+        </div>
+        {% elif analysis_data.display == "3" %}
+        <div id="date-selector" class="datesel{{ analysis_data.id }}">
+            <div></div><div></div>
+            <div class="button{% if d == '10' %} active{% endif %}"><a href="{% url 'analysis_data_ajax' analysis_data.id %}?d=10&type={{ type|urlencode }}">最近1月</a></div>
+            <div class="button{% if not d %} active{% endif %}"><a href="{% url 'analysis_data_ajax' analysis_data.id %}?type={{ type|urlencode }}">最近3月</a></div>
+            <div class="button{% if d == '12' %} active{% endif %}"><a href="{% url 'analysis_data_ajax' analysis_data.id %}?d=12&type={{ type|urlencode }}">最近6月</a></div>
+        </div>
+        {% endif %}
+        {% if analysis_data.display != "4" %}
+        <div id="type-selector" class="typesel{{ analysis_data.id }}">
+            <div></div>
+            <div></div>
+            {% for t in types %}
+                <div class="button{% if t == type %} active{% endif %}"><a href="{% url 'analysis_data_ajax' analysis_data.id %}?type={{ t|urlencode }}&d={{ d }}">{{ t }}</a></div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    <div class="widget-content">
+        <div id="data{{ analysis_data.id }}"></div>
+    </div>
+</div>
+{% endif %}

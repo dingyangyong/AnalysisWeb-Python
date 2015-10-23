@@ -1,0 +1,79 @@
+#sidebar-menu {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+#sidebar-menu .item .logo, #sidebar-menu .sidebar-submenu .item .logo{
+    background-image: none;
+    text-align: center;
+    display: block;
+    width:25px;
+}
+#sidebar-menu .sidebar-submenu .item .text{
+    margin-left: 10px;
+}
+#sidebar-menu .item .logo i{
+    width:40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 28px;
+}
+#sidebar-menu .sidebar-submenu .item .logo i{
+    width:30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 20px;
+}
+#sidebar-menu .active .logo i{
+    text-shadow: 0 -1px #666;
+}
+#sidebar-menu .sidebar-submenu .active .logo i{
+    color: #4DB351;
+    text-shadow: none;
+}
+
+#content-container{
+    min-width: 1220px;
+}
+
+.view_left, .view_right, .view_center{
+    float: left;
+    min-height: 452px;
+    min-width: 600px;
+}
+.view_left{
+    width:49.5%;
+}
+.view_left:nth-child(even){
+    float:right;
+}
+.view_right{
+    float: right;
+    width:49.5%;
+}
+.view_center{
+    width: 100%;
+}
+.view_table
+{
+    min-height: 0px;
+}
+.view_table table.d-table{
+    border-radius: 0px;
+    margin-bottom: 0px;
+    border: 0px;
+}
+.view_table .d-table th:first-child{
+    border-top-left-radius: 0px;
+}
+.view_table .d-table th:last-child {
+    border-top-right-radius: 0px;
+}
+.view_table .d-table tr:last-child td:first-child {
+    border-bottom-left-radius: 0px;
+}
+.view_table .d-table tr:last-child td:last-child {
+    border-bottom-right-radius: 0px;
+}
+.app-container:last-child {
+    margin-bottom: 0px;
+}

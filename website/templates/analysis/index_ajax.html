@@ -1,0 +1,17 @@
+{% for analysis_data in analysis.analysisdata_set.all %}
+    {% if role >= analysis_data.role %}
+        <div id="view{{ analysis_data.id }}"
+             class="
+             {% if analysis_data.location == "1" or analysis_data.location == "2" %}view_left{% else %}view_center{% endif %}
+             {% if analysis_data.display == "1" %} view_table{% endif %}
+             ">
+            <script>
+                function open_view_{{ analysis_data.id }}() {
+                    ajax_content_data('/analysis/analysis_data_ajax/{{ analysis_data.id }}/', 'view{{ analysis_data.id }}');
+                }
+    {#            {{ forloop.counter0 }}00#}
+                setTimeout('open_view_{{ analysis_data.id }}()', {%  widthratio forloop.counter0 1 100 %});
+            </script>
+        </div>
+    {% endif %}
+{% endfor %}

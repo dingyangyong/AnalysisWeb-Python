@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{#{% load set from tags %}#}
+{#{% block nav %}#}
+{#    {% set nav = 1 %}#}
+{#    {{ block.super }}#}
+{#{% endblock %}#}
+{#{% block extra_head %}#}
+{#    <script>#}
+{#        (function($){ // encapsulate jQuery#}
+{#            $(function () {#}
+{#                $('#newUser').highcharts({{ new_user|safe }});#}
+{#                $('#totalUser').highcharts({{ total_user|safe }});#}
+{#                $('#newSinaProfile').highcharts({{ new_sina_profile|safe }});#}
+{#                $('#totalSinaProfile').highcharts({{ total_sina_profile|safe }});#}
+{#            });#}
+{#        })(jQuery);#}
+{#    </script>#}
+{#{% endblock %}#}
+{% block body %}
+{#    <div id="newUser"></div>#}
+{#    <div id="totalUser"></div>#}
+{#    <div id="newSinaProfile"></div>#}
+{#    <div id="totalSinaProfile"></div>#}
+{% endblock %}
